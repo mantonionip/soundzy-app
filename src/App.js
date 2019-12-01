@@ -15,7 +15,7 @@ class App extends Component {
       isLoading: false,
       resultsIsShowing: false,
       userInput: '',
-      userCountry: 'US',
+      userCountry: '',
       music: [],
       songTitle: [],
       songArtist: [],

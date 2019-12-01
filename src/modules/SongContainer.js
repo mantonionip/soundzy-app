@@ -22,7 +22,7 @@ class SongContainer extends Component {
                     return (
                         <div className="musicItem" key={trackId}>
                             <div className="image">
-                                <input type="image" src={artwork} alt={collectionName} onClick={ () => { this.props.audioPlay(mapIndex)}} />
+                                <input className="artwork" type="image" src={artwork} alt={collectionName} onClick={ () => { this.props.audioPlay(mapIndex)}} />
                                 <div className="play">{this.props.audioPlaying ? <FontAwesomeIcon icon="pause-circle" /> : <FontAwesomeIcon icon="play-circle" />}</div>
                             </div>
 

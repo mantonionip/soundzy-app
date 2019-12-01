@@ -41,7 +41,7 @@ const Home = (props) => {
                                 <input
                                     type="radio"
                                     name="userCountry"
-                                    id="united kingdom"
+                                    id="unitedKingdom"
                                     value="GB"
                                     checked={props.userCountry === 'GB'}
                                     onChange={props.handleChange}
@@ -100,9 +100,8 @@ const Home = (props) => {
                                 placeholder="Search for Artist, Song, or Genre"
                                 autoComplete="off"
                             />
-                            
-        
-                            <input type="submit" value="Search"/>
+                        
+                            <input className="submitButton" type="submit" value="Search"/>
                         </div>
                     </div>
                 </form>
