@@ -4,6 +4,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Nav from './modules/Nav';
 import Home from './modules/Home';
+import Footer from './modules/Footer';
 
 import jump from 'jump.js';
 
@@ -27,7 +28,8 @@ class App extends Component {
       selectedAudioLink: '',
       audioPlaying: false,
       songList: [],
-      // error: ''    
+      isHidden: true, 
+      isReset: true  
     }
   }
 
@@ -48,7 +50,8 @@ class App extends Component {
     this.setState({
       userInput: '',
       isLoading: true,
-      resultsIsShowing: true
+      resultsIsShowing: true,
+      isHidden: false
     })
     const userCountry = this.state.userCountry;
     const userSearch = this.state.userInput;
@@ -75,7 +78,7 @@ class App extends Component {
     }
   }
 
-  arrayEqual = (arr1, arr2) => {
+ /*  arrayEqual = (arr1, arr2) => {
     if (arr1.length !== arr2.length)
       return false;
     for (var i = arr1.length; i--;) {
@@ -83,7 +86,7 @@ class App extends Component {
         return false;
     }
     return true;
-  }
+  } */
 
   // addSong = mapIndex => {
   //   const oldSongTitle = [...this.state.songTitle];
@@ -114,6 +117,29 @@ class App extends Component {
   //     acc.push(this.arrayEqual(item, selectedSongArtist));
   //   });
   // }
+
+  resetForm = () => {
+    this.setState({
+      isLoading: false,
+      resultsIsShowing: false,
+      userInput: '',
+      userCountry: 'US',
+      music: [],
+      songTitle: [],
+      songArtist: [],
+      songImage: [],
+      songAudioLink: [],
+      playlist: [],
+      selectedSong: '',
+      selectedArtist: '',
+      selectedImage: '',
+      selectedAudioLink: '',
+      audioPlaying: false,
+      songList: [],
+      isHidden: true,
+      isReset: true  
+    })
+  }
 
   getData = (query, location) => {
     // make a call to the iTunes store API
@@ -164,10 +190,7 @@ class App extends Component {
     return (
         <Router>
           <Fragment>
-            {/* <Nav /> */}
-            
-            <Route exact path="/"
-              render={() => { return (<Home 
+            <Home
               audioPlaying={audioPlaying}
               isLoading={isLoading}
               music={music}
@@ -182,8 +205,9 @@ class App extends Component {
               handleSubmit={this.handleSubmit}
               addSong={this.addSong}
               audioPlay={this.audioPlay}
-              />) 
-              }} />
+            />
+          {(!this.state.isHidden) ? <button type="reset" onClick={this.resetForm} className="sectionResetButton">Search Again</button> : null}
+          {this.state.isHidden ? null : <Footer />}
           </Fragment>
         </Router>
     )
@@ -191,3 +215,4 @@ class App extends Component {
 }
 
 export default App;
+

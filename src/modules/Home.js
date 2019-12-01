@@ -2,8 +2,6 @@ import React, { Fragment } from 'react';
 import SearchResult from './SearchResult';
 import SongContainer from './SongContainer';
 import Header from './Header';
-import Footer from './Footer';
-
 
 const Home = (props) => {
     return(
@@ -13,11 +11,10 @@ const Home = (props) => {
                 <form className="wrapper" role="search" aria-labelledby="search" onSubmit={props.handleSubmit}>
                     
                     <div className="country">
-                        <label>Select Your Country</label>
+                        <label className="select">Select Your Country</label>
                         <ul className="countryInput">
                             <li className="radio">
                                 <input
-                                    // className="unitedStates"
                                     type="radio"
                                     name="userCountry"
                                     id="us"
@@ -25,7 +22,7 @@ const Home = (props) => {
                                     checked={props.userCountry === 'US'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="us" className="us">United States</label>
+                                <label htmlFor="us" className="flag unitedStates"></label>
                             </li>
     
                             <li className="radio">
@@ -37,7 +34,7 @@ const Home = (props) => {
                                     checked={props.userCountry === 'CA'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="canada">Canada</label>
+                                <label htmlFor="canada" className="flag canada"></label>
                             </li>
     
                             <li className="radio">
@@ -49,19 +46,43 @@ const Home = (props) => {
                                     checked={props.userCountry === 'GB'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="united kingdom">United Kingdom</label>
+                                <label htmlFor="unitedKingdom" className="flag unitedKingdom"></label>
                             </li>
     
                             <li className="radio">
                                 <input
                                     type="radio"
                                     name="userCountry"
-                                    id="japan"
-                                    value="JP"
-                                    checked={props.userCountry === 'JP'}
+                                    id="france"
+                                    value="FR"
+                                    checked={props.userCountry === 'FR'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="japan">Japan</label>
+                                <label htmlFor="france" className="flag france"></label>
+                            </li>
+
+                            <li className="radio">
+                                <input
+                                    type="radio"
+                                    name="userCountry"
+                                    id="spain"
+                                    value="ES"
+                                    checked={props.userCountry === 'ES'}
+                                    onChange={props.handleChange}
+                                />
+                                <label htmlFor="spain" className="flag spain"></label>
+                            </li>
+
+                            <li className="radio">
+                                <input
+                                    type="radio"
+                                    name="userCountry"
+                                    id="italy"
+                                    value="IT"
+                                    checked={props.userCountry === 'IT'}
+                                    onChange={props.handleChange}
+                                />
+                                <label htmlFor="italy" className="flag italy"></label>
                             </li>
                             
                         </ul>
@@ -77,7 +98,7 @@ const Home = (props) => {
                                 value={props.userInput}
                                 onChange={props.handleChange}
                                 placeholder="Search for Artist, Song, or Genre"
-                                
+                                autoComplete="off"
                             />
                             
         
@@ -94,7 +115,7 @@ const Home = (props) => {
                     {props.isLoading ? <p>Loaindg...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
                 </div>
             </div>
-            {/* <Footer /> */}
+            
         </Fragment>
     )
 }

@@ -9,6 +9,10 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 .visuallyhidden:not(:focus):not(:active) { position: absolute; width: 1px; height: 1px; margin: -1px;border: 0;padding: 0;white-space: nowrap;clip-path: inset(100%);clip: rect(00 0 0);overflow: hidden;}
 
 /* General Styles */
+* {
+  /* border: 1px solid tomato; */
+}
+
 html {
   font-size: 125%;
 }
@@ -36,17 +40,17 @@ a {
 
 /* Main Page Styles*/
 .searchPage {
-  /* background-image: url(../assets/hero-image.jpg), linear-gradient(rgba(57, 66, 214, .7)); */
-  background-image: linear-gradient(rgba(57, 66, 214, .7), rgba(57, 66, 214, .7)), url(../assets/hero-image.jpg);
+  background-image: linear-gradient(rgba(57, 66, 214, .7), rgba(57, 66, 214, .7)), url(../assets/heroImage.jpg);
   background-position: center;
   background-size: cover;
   height: 100vh;
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
 }
 
+/* header styles */
 h1 {
   font-family: 'Playfair Display', serif;
   text-align: center;
@@ -57,53 +61,88 @@ h1 {
   padding-top: 100px;
 }
 
+/* select country styles */
 .country {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 150px 0;
   color: #fff;
+  margin: 80px 0;
 }
 
 .countryInput {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
+  grid-template-columns: repeat(3, 70px);
   grid-gap: 10px;
 }
 
-.countryInput .us {
-  background-image: url(../assets/united-states-of-america-flag.svg);
-}
-
 .radio {
+  position: relative;
   border: 1px solid;
-  border-radius: 10px;
-  height: 100px;
+  border-radius: 50%;
+  height: 70px;
   color: #fff;
 }
 
 .radio input[type=radio] {
   width: 100%;
   height: 100%;
+  /* opacity: 0; */
+}
+
+.radio label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
   cursor: pointer;
+  
 }
 
-.radio label .us {
-  background-image: url(../assets/american-flag.jpg);
+.radio label.flag {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  background-position: center;
 }
 
+.radio label.unitedStates {
+  background-image: url(../assets/usFlag.png);
+}
+
+.radio label.canada {
+  background-image: url(../assets/canadaFlag.png);
+}
+
+.radio label.unitedKingdom {
+  background-image: url(../assets/ukFlag.png);
+}
+
+.radio label.france {
+  background-image: url(../assets/franceFlag.png);
+}
+
+.radio label.spain {
+  background-image: url(../assets/spainFlag.png);
+}
+
+.radio label.italy {
+  background-image: url(../assets/italyFlag.png);
+}
+
+/* search bar styles */
 .userInput {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  margin-top: 4rem;
 }
 
 .userInput label {
   font-size: 1.4rem;
   font-weight: lighter;
   color: #FFF;
-  margin-top: 2rem;
 }
 
 .searchBar {
@@ -133,9 +172,15 @@ h1 {
   border-radius: 50px;
   background-color: rgba(255, 255, 255, .3);
   color: #fff;
-  box-shadow: 1px 1px 1px #363BA3;
+  box-shadow: 0 4px 5px #363BA3;
   font-weight: bolder;
   cursor: pointer;
+}
+
+/* search result styles */
+.searchResult {
+  text-align: center;
+  color: #333;
 }
 
 /* song container */
@@ -143,11 +188,12 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  /* overflow: hidden; */
 }
 
 .musicItem {
   width: 150px;
-  margin: 10px;
+  margin: 0 10px -40px 10px;
   text-align: center;
   padding: 20px 0;
 }
@@ -155,10 +201,25 @@ h1 {
 .musicItem input[type=image] {
   width: 100%;
   border-radius: 50%;
+  border: 1px solid #363BA4;
 }
 
-.artist {
+.musicItem .trackName {
+  font-family: 'Roboto', sans-serif;
+  font-size: .7rem;
+  font-weight: lighter;
+}
+
+.musicItem .artist {
+  font-family: 'Roboto', sans-serif;
+  font-size: .7rem;
+  font-weight: light;
   font-style: italic;
+  margin: -10px 0 40px 0;
+}
+
+.musicItem .artist a {
+  color: #363BA4;
 }
 
 .image {
@@ -173,18 +234,38 @@ h1 {
   font-size: 2.2rem;
 }
 
+/* reset button */
+.sectionResetButton {
+  font-family: 'Roboto', sans-serif;
+  display: block;
+  width: 20%;
+  margin: 30px auto;
+  height: 3rem;
+  border: 1px solid #5F65D1;
+  border-radius: 50px;
+  background-color: #FFF;
+  color: #5F65D1;
+  box-shadow: 0 4px 2px rgba(54,59,163, .5);
+  font-weight: bolder;
+  cursor: pointer;
+}
+
 /* Footer Styles */
 footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #363BA4;
+  padding: 10px 0;
 }
 footer p {
   text-align: center;
   padding: 7px 0 0 0;
+  color: #FFF;
 }
 
 footer p a {
   text-decoration: none;
+  color: #FBC02D;
 }
