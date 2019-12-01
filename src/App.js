@@ -191,12 +191,3 @@ class App extends Component {
 }
 
 export default App;
-
-
-
-
-{/* {this.state.error === '' && this.state.error  }
-        {this.state.songList.map( (currentSong, index) => {
-          if (index > 5) return;
-          return <div key={index}>{`${currentSong.trackName} ${currentSong.trackCount}`}</div>
-        })} */}
