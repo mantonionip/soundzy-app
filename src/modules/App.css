@@ -52,7 +52,7 @@ a:visited {
 }
 
 /* header styles */
-h1 {
+h1.appTitle {
   font-family: 'Playfair Display', serif;
   text-align: center;
   font-size: 4rem;
@@ -60,6 +60,16 @@ h1 {
   color: #FFF;
   margin: 0;
   padding-top: 100px;
+  /* outline: none; */
+  /* opacity: 0;
+  animation: bounceIn;
+  animation-duration: 2s;
+  animation-delay: .5s;
+  animation-fill-mode: forwards; */
+
+  /* box-shadow: 0 0 0 0 rgba(0, 0, 0, 1); */
+  transform: scale(1);
+  animation: pulse 1s infinite;
 }
 
 /* select country styles */
@@ -331,4 +341,56 @@ footer p a {
   left: 50%;
   transform: translate(-50%);
   z-index: 100;
+}
+
+/* Animation Styles */
+/* @keyframes bounceIn {
+  from,
+  20%,
+  40%,
+  60%,
+  80%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  25% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  75% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+} */
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.90);
+        /* box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7); */
+    }
+
+    70% {
+        transform: scale(1);
+        /* box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); */
+    }
+
+    100% {
+        transform: scale(0.90);
+        /* box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); */
+    }
 }

@@ -1,16 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import './modules/App.css';
+import firebase from './firebase';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './modules/Home';
 import Footer from './modules/Footer';
 import jump from 'jump.js';
 
-const initialState = {
-  noResults: '',
-  noCountry: '',
-  noOptionSelected: ''
-}
 
 class App extends Component {
   constructor() {
@@ -30,7 +27,7 @@ class App extends Component {
       selectedArtist: '',
       selectedImage: '',
       selectedAudioLink: '',
-      audioPlaying: false,
+      audioPlaying: [],
       songList: [],
       isHidden: true, 
       isReset: true,
@@ -44,77 +41,103 @@ class App extends Component {
   }
 
   validate = () => {
-    let noResults = '';
-    let noCountry = '';
-    let noOptionSelected = '';
 
     if (this.state.userInput === '' && this.state.userCountry === '') {
-      noOptionSelected = 'You should choose a country as well as entering a name'
+      Swal.fire({
+        title: 'Warning',
+        text: `Choose a country AND enter a name`,
+        imageUrl: require('./assets/peopleListeningMusic.png'),
+        imageWidth: 500,
+        imageHeight: 300,
+        imageAlt: 'Illustration of people in the subway listening to music',
+      });
+      return false
     } else if (this.state.userCountry === '' || !this.state.userInput === null) {
-      noCountry = 'You should choose a country!!'
+      Swal.fire({
+        title: 'Warning',
+        text: `You should choose a country!!`,
+        imageUrl: require('./assets/peopleListeningMusic.png'),
+        imageWidth: 400,
+        imageHeight: 200,
+        // imageAlt: 'Custom image',
+      });
+      return false
+      // noCountry = `You should choose a country!!`
     } else if (this.state.userInput === '') {
-      noResults = `You should either enter an artist's name, an album, or a genre!!`
+      Swal.fire({
+        title: 'Warning',
+        text: `You should either enter an artist's name, an album, or a genre!!`,
+        imageUrl: require('./assets/peopleListeningMusic.png'),
+        imageWidth: 400,
+        imageHeight: 200,
+        // imageAlt: 'Custom image',
+      });
+      return false
+      // noResults = `You should either enter an artist's name, an album, or a genre!!`
+    } else {
+      return true;
     }
-    
-    if (noOptionSelected) {
-      this.setState({noOptionSelected});
-      return false;
-    }
-
-    if (noResults) {
-      this.setState({ noResults });
-      return false;
-    }
-
-    if (noCountry) {
-      this.setState({ noCountry });
-      return false;
-    }
-
-    return true;
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     const isValid = this.validate();
+    console.log(isValid);
     if (isValid) {
-      // clear form
-      this.setState(initialState);
-    }
 
-    jump('.songContainer', {
-      duration: 1500,
-      offset: 0,
-      callback: undefined,
-      a11y: true
-    });
-    this.setState({
-      userInput: '',
-      isLoading: true,
-      resultsIsShowing: true,
-      isHidden: false
-    })
-    const userCountry = this.state.userCountry;
-    const userSearch = this.state.userInput;
-    this.getData(userSearch, userCountry);
+      // clear form
+
+      jump('.songContainer', {
+        duration: 1500,
+        offset: 0,
+        callback: undefined,
+        a11y: true
+      });
+      this.setState({
+        userInput: '',
+        isLoading: true,
+        resultsIsShowing: true,
+        isHidden: false
+      })
+
+      const userCountry = this.state.userCountry;
+      const userSearch = this.state.userInput;
+      this.getData(userSearch, userCountry);
+
+      const dbRef = firebase.database().ref();
+      dbRef.push('text');
+    }  
   }
 
   audioPlay = (mapIndex) => {
     const audio = document.getElementById(mapIndex);
+    const allAudios = document.querySelectorAll('audio');
+    const audioArray = [...this.state.audioPlaying];
+
     audio.onended = (event) => {
+      audioArray[mapIndex] = false
       this.setState({
-        audioPlaying: false
+        audioPlaying: audioArray
       })
     }
-    if (this.state.audioPlaying) {
+    if (audioArray[mapIndex]) {
+      audioArray[mapIndex] = !audioArray[mapIndex]
+      console.log(audioArray[mapIndex]);
       audio.pause();
       this.setState({
-        audioPlaying: false
+        audioPlaying: audioArray
       })
     } else {
+      audioArray[mapIndex] = !audioArray[mapIndex]
+      allAudios.forEach((singleAudio, index) => {
+        if (index !== mapIndex) {
+          singleAudio.pause();
+          audioArray[index] = false
+        } 
+      })
       audio.play();
       this.setState({
-        audioPlaying: true
+        audioPlaying: audioArray
       })
     }
   }
@@ -158,6 +181,7 @@ class App extends Component {
         media: 'music',
       }
     }).then((res) => {
+      const isAudioPlaying = [];
       const data = res.data.results;
       const songTitle = data.map((item) => {
         return item.trackName;
@@ -169,6 +193,7 @@ class App extends Component {
         return item.artworkUrl100;
       })
       const songAudioLink = data.map((item) => {
+        isAudioPlaying.push(false);
         return item.previewUrl
       })
 
@@ -179,6 +204,7 @@ class App extends Component {
         songArtist: songArtist,
         songImage: songImage,
         songAudioLink: songAudioLink,
+        audioPlaying: isAudioPlaying
       })
     })
   }
@@ -190,7 +216,11 @@ class App extends Component {
     return (
         <Router>
           <Fragment>
-
+            <div className="errorMessage wrapper">
+              {this.state.noResults}
+              {this.state.noCountry}
+              {this.state.noOptionSelected}
+            </div>
             <Home
               audioPlaying={audioPlaying}
               isLoading={isLoading}
@@ -207,11 +237,6 @@ class App extends Component {
               addSong={this.addSong}
               audioPlay={this.audioPlay}
             />
-          <div className="errorMessage wrapper">
-            {this.state.noResults}
-            {this.state.noCountry}
-            {this.state.noOptionSelected}
-          </div>
           {(!this.state.isHidden) ? <button type="reset" onClick={this.resetForm} className="sectionResetButton">Search Again</button> : null}
           {this.state.isHidden ? null : <Footer />}
           </Fragment>
