@@ -89,7 +89,7 @@ const Home = (props) => {
                     </div>
 
                     <div className="userInput">
-                        <label htmlFor="userInput">Enter your favourite artist, music track or genre and discover new music.</label>
+                        <label htmlFor="userInput">Search for your favourite artist, music track or genre and discover new music.</label>
                         <div className="searchBar">
                             <input 
                                 type="text"

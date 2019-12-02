@@ -2,11 +2,15 @@ import React, { Component, Fragment } from 'react';
 import './modules/App.css';
 import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Nav from './modules/Nav';
 import Home from './modules/Home';
 import Footer from './modules/Footer';
-
 import jump from 'jump.js';
+
+const initialState = {
+  noResults: '',
+  noCountry: '',
+  noOptionSelected: ''
+}
 
 class App extends Component {
   constructor() {
@@ -29,7 +33,7 @@ class App extends Component {
       audioPlaying: false,
       songList: [],
       isHidden: true, 
-      isReset: true  
+      isReset: true,
     }
   }
 
@@ -39,8 +43,45 @@ class App extends Component {
     })
   }
 
+  validate = () => {
+    let noResults = '';
+    let noCountry = '';
+    let noOptionSelected = '';
+
+    if (this.state.userInput === '' && this.state.userCountry === '') {
+      noOptionSelected = 'You should choose a country as well as entering a name'
+    } else if (this.state.userCountry === '' || !this.state.userInput === null) {
+      noCountry = 'You should choose a country!!'
+    } else if (this.state.userInput === '') {
+      noResults = `You should either enter an artist's name, an album, or a genre!!`
+    }
+    
+    if (noOptionSelected) {
+      this.setState({noOptionSelected});
+      return false;
+    }
+
+    if (noResults) {
+      this.setState({ noResults });
+      return false;
+    }
+
+    if (noCountry) {
+      this.setState({ noCountry });
+      return false;
+    }
+
+    return true;
+  }
+
   handleSubmit = (event) => {
     event.preventDefault();
+    const isValid = this.validate();
+    if (isValid) {
+      // clear form
+      this.setState(initialState);
+    }
+
     jump('.songContainer', {
       duration: 1500,
       offset: 0,
@@ -78,52 +119,12 @@ class App extends Component {
     }
   }
 
- /*  arrayEqual = (arr1, arr2) => {
-    if (arr1.length !== arr2.length)
-      return false;
-    for (var i = arr1.length; i--;) {
-      if (arr1[i] !== arr2[i])
-        return false;
-    }
-    return true;
-  } */
-
-  // addSong = mapIndex => {
-  //   const oldSongTitle = [...this.state.songTitle];
-  //   const updatedPlaylist = oldSongTitle.filter( (item, filterIndex) => filterIndex === mapIndex);
-  //   const updatedPlaylistString = updatedPlaylist.toString();
-
-  //   const oldSongArtist = [...this.state.songArtist];
-  //   const updatedArtist = oldSongArtist.filter( (item, filterIndex) => filterIndex === mapIndex)
-  //   const updatedArtistString = updatedArtist.toString();
-
-  //   const oldSongImage = [...this.state.songImage];
-  //   const updatedImage = oldSongImage.filter((item, filterIndex) => filterIndex === mapIndex)
-  //   const updatedImageString = updatedImage.toString();
-
-  //   const oldSongLink = [...this.state.songAudioLink];
-  //   const updatedLink = oldSongLink.filter((item, filterIndex) => filterIndex === mapIndex)
-  //   const updatedLinkString = updatedLink.toString();
-
-  //   const playlistTitleArtist = this.state.playlist.map( (item) => {
-  //     return [item.songTitle, item.songArtist]
-  //   });
-
-  //   const selectedSongArtist = [updatedPlaylistString, updatedArtistString]
-
-  //   let acc = [];
-
-  //   playlistTitleArtist.forEach( (item) => {
-  //     acc.push(this.arrayEqual(item, selectedSongArtist));
-  //   });
-  // }
-
   resetForm = () => {
     this.setState({
       isLoading: false,
       resultsIsShowing: false,
       userInput: '',
-      userCountry: 'US',
+      userCountry: '',
       music: [],
       songTitle: [],
       songArtist: [],
@@ -137,7 +138,10 @@ class App extends Component {
       audioPlaying: false,
       songList: [],
       isHidden: true,
-      isReset: true  
+      isReset: true, 
+      noResults: '',
+      noCountry: '',
+      noOptionSelected: ''
     })
   }
 
@@ -154,8 +158,6 @@ class App extends Component {
         media: 'music',
       }
     }).then((res) => {
-      // console.log(res.data.results);
-
       const data = res.data.results;
       const songTitle = data.map((item) => {
         return item.trackName;
@@ -169,8 +171,6 @@ class App extends Component {
       const songAudioLink = data.map((item) => {
         return item.previewUrl
       })
-
-      if(data.length === 10) {this.setState({error:'NO RESULTS'})}
 
       this.setState({
         music: data,
@@ -190,6 +190,7 @@ class App extends Component {
     return (
         <Router>
           <Fragment>
+
             <Home
               audioPlaying={audioPlaying}
               isLoading={isLoading}
@@ -206,6 +207,11 @@ class App extends Component {
               addSong={this.addSong}
               audioPlay={this.audioPlay}
             />
+          <div className="errorMessage wrapper">
+            {this.state.noResults}
+            {this.state.noCountry}
+            {this.state.noOptionSelected}
+          </div>
           {(!this.state.isHidden) ? <button type="reset" onClick={this.resetForm} className="sectionResetButton">Search Again</button> : null}
           {this.state.isHidden ? null : <Footer />}
           </Fragment>
@@ -215,4 +221,3 @@ class App extends Component {
 }
 
 export default App;
-
