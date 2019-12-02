@@ -4,7 +4,7 @@ class Header extends Component {
     render() {
         return (
             <header>
-                <h1 className="appTitle bounceIn">In The Mood For Music</h1>
+                <h1 className="appTitle pulse">In The Mood For Music</h1>
             </header>
         )
     }

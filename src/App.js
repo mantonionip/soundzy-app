@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './modules/Home';
 import Footer from './modules/Footer';
+import Playlist from './modules/Playlist';
 import jump from 'jump.js';
 
 
@@ -57,23 +58,21 @@ class App extends Component {
         title: 'Warning',
         text: `You should choose a country!!`,
         imageUrl: require('./assets/peopleListeningMusic.png'),
-        imageWidth: 400,
-        imageHeight: 200,
-        // imageAlt: 'Custom image',
+        imageWidth: 500,
+        imageHeight: 300,
+        imageAlt: 'Illustration of people in the subway listening to music',
       });
       return false
-      // noCountry = `You should choose a country!!`
     } else if (this.state.userInput === '') {
       Swal.fire({
         title: 'Warning',
-        text: `You should either enter an artist's name, an album, or a genre!!`,
+        text: `Search for an artist, an album, or a genre!!`,
         imageUrl: require('./assets/peopleListeningMusic.png'),
-        imageWidth: 400,
-        imageHeight: 200,
-        // imageAlt: 'Custom image',
+        imageWidth: 500,
+        imageHeight: 300,
+        imageAlt: 'Illustration of people in the subway listening to music',
       });
       return false
-      // noResults = `You should either enter an artist's name, an album, or a genre!!`
     } else {
       return true;
     }
@@ -82,10 +81,8 @@ class App extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const isValid = this.validate();
-    console.log(isValid);
-    if (isValid) {
 
-      // clear form
+    if (isValid) {
 
       jump('.songContainer', {
         duration: 1500,
@@ -103,9 +100,6 @@ class App extends Component {
       const userCountry = this.state.userCountry;
       const userSearch = this.state.userInput;
       this.getData(userSearch, userCountry);
-
-      const dbRef = firebase.database().ref();
-      dbRef.push('text');
     }  
   }
 
@@ -140,6 +134,75 @@ class App extends Component {
         audioPlaying: audioArray
       })
     }
+  }
+
+  // arrayEqual = (arr1, arr2) => {
+  //   if (arr1.length !== arr2.length)
+  //     return false;
+  //   for (var i = arr1.length; i--;) {
+  //     if (arr1[i] !== arr2[i])
+  //       return false;
+  //   }
+  //   return true;
+  // }
+
+  addSong = mapIndex => {
+    const oldSongTitle = [...this.state.songTitle];
+    const updatedPlaylist = oldSongTitle.filter( (item, filterIndex) => filterIndex === mapIndex);
+    const updatedPlaylistString = updatedPlaylist.toString();
+
+    const oldSongArtist = [...this.state.songArtist];
+    const updatedArtist = oldSongArtist.filter( (item, filterIndex) => filterIndex === mapIndex);
+    const updatedArtistString = updatedArtist.toString();
+
+    const oldSongImage = [...this.state.songImage];
+    const updatedImage = oldSongImage.filter( (item, filterIndex) => filterIndex === mapIndex);
+    const updatedImageString = updatedImage.toString();
+
+    const oldSongLink = [...this.state.songAudioLink];
+    const updatedLink = oldSongLink.filter( (item, filterIndex) => filterIndex === mapIndex);
+    const updatedLinkString = updatedLink.toString();
+
+    const playlistTitleArtist = this.state.playlist.map( (item) => {
+      return [item.songTitle, item.songArtist]
+    });
+
+    const selectedSongArtist = [updatedPlaylistString, updatedArtistString]
+
+    let acc = [];
+    playlistTitleArtist.forEach( (item) => {
+      acc.push(this.arrayEqual(item, selectedSongArtist));
+    });
+
+      if (acc.includes(true)) {
+        Swal.fire({
+          title: 'Warning',
+          text: `You already have this song in your playlist!`,
+          imageUrl: require('./assets/peopleListeningMusic.png'),
+          imageWidth: 500,
+          imageHeight: 300,
+          imageAlt: 'Illustration of people in the subway listening to music',
+        });
+      } else {
+        this.setState({
+          selectedSong: updatedPlaylistString,
+          selectedArtist: updatedArtistString,
+          selectedImage: updatedImageString,
+          selectedAudioLink: updatedLinkString
+        })
+        const dbRef = firebase.database().ref();
+        dbRef.push({
+          selectedSong: updatedPlaylistString,
+          selectedArtist: updatedArtistString,
+          selectedImage: updatedImageString,
+          selectedAudioLink: updatedLinkString
+        });
+      }
+  }
+
+  removeSong = (songKey) => {
+    const dbRef = firebase.database().ref(songKey);
+    dbRef.remove();
   }
 
   resetForm = () => {
@@ -208,6 +271,28 @@ class App extends Component {
       })
     })
   }
+
+  componentDidMount() {
+
+    const dbRef = firebase.database().ref();
+    dbRef.on('value', (response) => {
+      const data = response.val();
+      const updatePlaylist = [];
+      for (let item in data) {
+        updatePlaylist.push({
+          key: item,
+          songTitle: data[item].songTitle,
+          songArtist: data[item].songArtist,
+          songImage: data[item].songImage,
+          songAudioLink: data[item].songAudioLink
+        });
+      }
+
+      this.setState({
+        playlist: updatePlaylist
+      })
+    })
+  }
  
   render() {
 
@@ -221,6 +306,7 @@ class App extends Component {
               {this.state.noCountry}
               {this.state.noOptionSelected}
             </div>
+
             <Home
               audioPlaying={audioPlaying}
               isLoading={isLoading}
