@@ -23,7 +23,7 @@ const Home = (props) => {
                                     checked={props.userCountry === 'US'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="us" className="flag unitedStates"></label>
+                                <label tabIndex="0" htmlFor="us" className="flag unitedStates"></label>
                             </li>    
                             {/* Canada Store */}
                             <li className="radio">
@@ -35,7 +35,7 @@ const Home = (props) => {
                                     checked={props.userCountry === 'CA'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="canada" className="flag canada"></label>
+                                <label tabIndex="0" htmlFor="canada" className="flag canada"></label>
                             </li>   
                             {/* Great Britain Store */}
                             <li className="radio">
@@ -47,7 +47,7 @@ const Home = (props) => {
                                     checked={props.userCountry === 'GB'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="unitedKingdom" className="flag unitedKingdom"></label>
+                                <label tabIndex="0" htmlFor="unitedKingdom" className="flag unitedKingdom"></label>
                             </li>
                             {/* France Store */}
                             <li className="radio">
@@ -59,7 +59,7 @@ const Home = (props) => {
                                     checked={props.userCountry === 'FR'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="france" className="flag france"></label>
+                                <label tabIndex="0" htmlFor="france" className="flag france"></label>
                             </li>
                             {/* Spain Store */}
                             <li className="radio">
@@ -71,7 +71,7 @@ const Home = (props) => {
                                     checked={props.userCountry === 'ES'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="spain" className="flag spain"></label>
+                                <label tabIndex="0" htmlFor="spain" className="flag spain"></label>
                             </li>
                             {/* Italy Store */}
                             <li className="radio">
@@ -83,14 +83,14 @@ const Home = (props) => {
                                     checked={props.userCountry === 'IT'}
                                     onChange={props.handleChange}
                                 />
-                                <label htmlFor="italy" className="flag italy"></label>
+                                <label tabIndex="0" htmlFor="italy" className="flag italy"></label>
                             </li>
                             
                         </ul>
                     </div>
                     {/* Search bar letting user to search for their favourite music artist, genre and album */}
                     <div className="userInput">
-                        <label htmlFor="userInput">Search for your favourite artist, music track or genre and discover new music.</label>
+                        <label htmlFor="userInput">Search for your favourites and discover cool beats</label>
                         <div className="searchBar">
                             <input 
                                 type="text"
@@ -111,7 +111,7 @@ const Home = (props) => {
                 <div className="wrapper">
                     {props.resultsIsShowing && <SearchResult music={props.music} />}
 
-                    {props.isLoading ? <p className="preloader">Loaindg...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
+                    {props.isLoading ? <p>Loaindg...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
                 </div>
             </div>
         </Fragment>

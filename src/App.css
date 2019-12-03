@@ -57,7 +57,7 @@ h1.appTitle {
   margin: 0;
   padding-top: 60px;
   transform: scale(1);
-  animation: pulse 1s infinite;
+  animation: pulse .5s infinite;
 }
 
 /* select iStore styles */
@@ -79,7 +79,6 @@ h1.appTitle {
 
 .radio {
   position: relative;
-  /* border: 2px solid #fff;  */
   border-radius: 50%;
   width: 70px;
   height: 70px;
@@ -192,7 +191,8 @@ h1.appTitle {
   transition: all 0.5s;
 }
 
-.searchBar .submitButton:hover {
+.searchBar .submitButton:hover,
+.searchBar .submitButton:focus {
   background-color: #fff;
   color: #363BA3;
 }
@@ -288,7 +288,8 @@ h1.appTitle {
   transition: all 0.5s;
 }
 
-.sectionResetButton:hover {
+.sectionResetButton:hover,
+.sectionResetButton:focus {
   background-color: #5F65D1;
   color: #FFF;
 }
@@ -338,4 +339,109 @@ footer p a {
     100% {
         transform: scale(0.90);
     }
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 900px) {
+  .searchPage {
+    min-height: 768px;
+    overflow: scroll;
+  }
+
+  .userInput label {
+  font-size: 1.2rem
+  }
+
+  .searchBar .submitButton {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+    
+
+  .wrapper {
+    width: 80%;
+  }
+
+  h1.appTitle {
+    font-size: 5rem;
+  }
+
+  .country label {
+    font-size: 1rem;
+  }
+
+  .userInput label {
+    font-size: 1.1rem
+  }
+
+  .searchBar input[type=text] {
+    font-size: .9rem;
+    padding-left: 30px;
+  }
+
+  .searchBar .submitButton {
+    width: 45%;
+  }
+}
+
+@media (max-width: 560px) {
+  h1.appTitle {
+    font-size: 4rem;
+    padding-top: 0;
+  }
+
+  .userInput label {
+    font-size: .9rem
+  }
+
+  .searchBar input[type=text] {
+    font-size: .8rem;
+    padding-left: 20px;
+  }
+
+  .searchBar input[type=text],
+  .searchBar input[type=submit] {
+    height: 2.5rem;
+  }
+
+  .submitButton {
+    font-size: .9rem;
+  }
+}
+
+@media (max-width: 450px) {
+
+  h1.appTitle {
+    font-size: 3.2rem;
+  }
+
+  .countryInput {
+    grid-template-columns: repeat(3, 60px);
+  }
+
+  .radio {
+    width: 60px;
+    height: 60px;
+  }
+
+  .userInput label {
+    font-size: .8rem;
+    font-weight: bold;
+  }
+
+  .searchBar input[type=text] {
+    font-size: .7rem;
+  }
+}
+
+@media (max-width: 370px) {
+  h1.appTitle {
+    font-size: 2.8rem;
+  }
+
+  .searchBar input[type=text] {
+    padding-left: 27px;
+  }
 }
