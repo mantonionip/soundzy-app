@@ -90,7 +90,7 @@ const Home = (props) => {
                     </div>
                     {/* Search bar letting user to search for their favourite music artist, genre and album */}
                     <div className="userInput">
-                        <label htmlFor="userInput">Search for your favourites and discover cool beats</label>
+                        <label htmlFor="userInput">Search your favourites and find out your true music personality</label>
                         <div className="searchBar">
                             <input 
                                 type="text"

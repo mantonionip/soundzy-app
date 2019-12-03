@@ -95,6 +95,7 @@ h1.appTitle {
   left: 50%;
   width: 100%;
   height: 100%;
+  border: 2px solid #363BA3;
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
@@ -201,6 +202,12 @@ h1.appTitle {
 .searchResult {
   text-align: center;
   color: #333;
+}
+
+.searchResult h3 {
+  font-size: 1.2rem;
+  line-height: 2;
+  padding-top: 30px;
 }
 
 /* song container */
@@ -355,6 +362,10 @@ footer p a {
   .searchBar .submitButton {
     width: 40%;
   }
+
+  .sectionResetButton {
+    width: 30%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -384,6 +395,16 @@ footer p a {
   .searchBar .submitButton {
     width: 45%;
   }
+
+  .sectionResetButton {
+    width: 35%;
+  }
+}
+
+@media (max-width: 590px) {
+  .searchResult h3 {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 560px) {
@@ -402,12 +423,18 @@ footer p a {
   }
 
   .searchBar input[type=text],
-  .searchBar input[type=submit] {
+  .searchBar input[type=submit],
+  .sectionResetButton {
     height: 2.5rem;
   }
 
-  .submitButton {
+  .submitButton,
+  .sectionResetButton {
     font-size: .9rem;
+  }
+
+  footer p {
+    font-size: .8rem;
   }
 }
 
@@ -419,6 +446,7 @@ footer p a {
 
   .countryInput {
     grid-template-columns: repeat(3, 60px);
+    grid-gap: 10px;
   }
 
   .radio {
@@ -436,6 +464,29 @@ footer p a {
   }
 }
 
+@media (max-width: 430px) {
+  .searchResult h3 {
+    font-size: .8rem;
+  }
+
+
+  .searchBar .submitButton {
+    width: 50%;
+  }
+
+  .sectionResetButton {
+    width: 40%;
+  }
+
+  .musicItem {
+    width: 120px;
+  }
+
+  footer p {
+    font-size: .7rem;
+  }
+}
+
 @media (max-width: 370px) {
   h1.appTitle {
     font-size: 2.8rem;
@@ -443,5 +494,23 @@ footer p a {
 
   .searchBar input[type=text] {
     padding-left: 27px;
+  }
+
+  .musicItem {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px 0 0 0;
+  }
+
+  .searchBar .submitButton {
+    width: 60%;
+  }
+
+  .sectionResetButton {
+    width: 60%;
+  }
+
+  footer p {
+    font-size: .6rem;
   }
 }
