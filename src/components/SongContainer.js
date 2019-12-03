@@ -8,6 +8,7 @@ library.add(faPlusCircle, faPlayCircle, faPauseCircle)
 class SongContainer extends Component {
     render() {
         return (
+            // The values each track needs to have on the result page
             <div className="songContainer" aria-live="polite" role="main">
                 {this.props.music.map( (item, mapIndex) => {
                     const { 
@@ -19,6 +20,7 @@ class SongContainer extends Component {
                         collectionName, 
                         previewUrl,
                     } = item;
+                    // Every single item in the result page
                     return (
                         <div className="musicItem" key={trackId}>
                             <div className="image">

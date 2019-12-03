@@ -8,10 +8,12 @@ const Home = (props) => {
         <Fragment>
             <div className="searchPage">
             <Header />
+                {/* Defining six countries iStores by iTunes store */}
                 <form className="wrapper" role="search" aria-labelledby="search" onSubmit={props.handleSubmit}>
                     <div className="country">
                         <label className="select">Select Your iStore:</label>
                         <ul className="countryInput">
+                            {/* Unites States Store */}
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -23,6 +25,7 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="us" className="flag unitedStates"></label>
                             </li>    
+                            {/* Canada Store */}
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -34,6 +37,7 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="canada" className="flag canada"></label>
                             </li>   
+                            {/* Great Britain Store */}
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -45,6 +49,7 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="unitedKingdom" className="flag unitedKingdom"></label>
                             </li>
+                            {/* France Store */}
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -56,6 +61,7 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="france" className="flag france"></label>
                             </li>
+                            {/* Spain Store */}
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -67,6 +73,7 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="spain" className="flag spain"></label>
                             </li>
+                            {/* Italy Store */}
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -81,6 +88,7 @@ const Home = (props) => {
                             
                         </ul>
                     </div>
+                    {/* Search bar letting user to search for their favourite music artist, genre and album */}
                     <div className="userInput">
                         <label htmlFor="userInput">Search for your favourite artist, music track or genre and discover new music.</label>
                         <div className="searchBar">
@@ -98,11 +106,12 @@ const Home = (props) => {
                     </div>
                 </form>
             </div>
+            {/* Displaying the result */}
             <div className="search" id="search">
                 <div className="wrapper">
                     {props.resultsIsShowing && <SearchResult music={props.music} />}
 
-                    {props.isLoading ? <p>Loaindg...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
+                    {props.isLoading ? <p className="preloader">Loaindg...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
                 </div>
             </div>
         </Fragment>

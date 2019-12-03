@@ -36,7 +36,7 @@ a:visited {
 
 /* Main Page Styles*/
 .searchPage {
-  background-image: linear-gradient(rgba(57, 66, 214, .7), rgba(57, 66, 214, .7)), url(../assets/heroImage.jpg);
+  background-image: linear-gradient(rgba(57, 66, 214, .7), rgba(57, 66, 214, .7)), url(./assets/heroImage.jpg);
   background-position: center;
   background-size: cover;
   height: 100vh;
@@ -48,9 +48,9 @@ a:visited {
 
 /* header styles */
 h1.appTitle {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Paytone One', sans-serif;
   text-align: center;
-  font-size: 5rem;
+  font-size: 6rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: #FFF;
@@ -60,7 +60,7 @@ h1.appTitle {
   animation: pulse 1s infinite;
 }
 
-/* select country styles */
+/* select iStore styles */
 .country {
   display: flex;
   flex-direction: column;
@@ -119,27 +119,27 @@ h1.appTitle {
 }
 
 .radio label.unitedStates {
-  background-image: url(../assets/usFlag.png);
+  background-image: url(./assets/usFlag.png);
 }
 
 .radio label.canada {
-  background-image: url(../assets/canadaFlag.png);
+  background-image: url(./assets/canadaFlag.png);
 }
 
 .radio label.unitedKingdom {
-  background-image: url(../assets/ukFlag.png);
+  background-image: url(./assets/ukFlag.png);
 }
 
 .radio label.france {
-  background-image: url(../assets/franceFlag.png);
+  background-image: url(./assets/franceFlag.png);
 }
 
 .radio label.spain {
-  background-image: url(../assets/spainFlag.png);
+  background-image: url(./assets/spainFlag.png);
 }
 
 .radio label.italy {
-  background-image: url(../assets/italyFlag.png);
+  background-image: url(./assets/italyFlag.png);
 }
 
 /* search bar styles */
@@ -235,24 +235,7 @@ h1.appTitle {
   font-size: .7rem;
   font-weight: light;
   font-style: italic;
-  margin: -10px 0 20px 0;
-}
-
-.addToPlaylist {
-  border: none;
-  font-size: .7rem;
-  padding-bottom: 10px;
-  opacity: .5;
-}
-
-.addToPlaylist:hover {
-  opacity: 1;
-  cursor: pointer;
-}
-
-.addToPlaylist:focus {
-  color: red;
-  opacity: 1;
+  margin: -10px 0 30px 0;
 }
 
 .addToPlaylist svg {
@@ -342,54 +325,17 @@ footer p a {
   color: #FBC02D;
 }
 
-/* Animation Styles */
-/* @keyframes bounceIn {
-  from,
-  20%,
-  40%,
-  60%,
-  80%,
-  to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  0% {
-    opacity: 0;
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-
-  25% {
-    transform: scale3d(1.1, 1.1, 1.1);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale3d(0.9, 0.9, 0.9);
-  }
-
-  75% {
-    transform: scale3d(1.05, 1.05, 1.05);
-  }
-
-  100% {
-    opacity: 1;
-    transform: scale3d(1, 1, 1);
-  }
-} */
-
+/* animation styles */
 @keyframes pulse {
     0% {
         transform: scale(0.90);
-        /* box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7); */
     }
 
     70% {
         transform: scale(1);
-        /* box-shadow: 0 0 0 10px rgba(0, 0, 0, 0); */
     }
 
     100% {
         transform: scale(0.90);
-        /* box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); */
     }
 }
