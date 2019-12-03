@@ -9,9 +9,8 @@ const Home = (props) => {
             <div className="searchPage">
             <Header />
                 <form className="wrapper" role="search" aria-labelledby="search" onSubmit={props.handleSubmit}>
-                    
                     <div className="country">
-                        <label className="select">Select Your Country</label>
+                        <label className="select">Select Your iStore:</label>
                         <ul className="countryInput">
                             <li className="radio">
                                 <input
@@ -23,8 +22,7 @@ const Home = (props) => {
                                     onChange={props.handleChange}
                                 />
                                 <label htmlFor="us" className="flag unitedStates"></label>
-                            </li>
-    
+                            </li>    
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -35,8 +33,7 @@ const Home = (props) => {
                                     onChange={props.handleChange}
                                 />
                                 <label htmlFor="canada" className="flag canada"></label>
-                            </li>
-    
+                            </li>   
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -48,7 +45,6 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="unitedKingdom" className="flag unitedKingdom"></label>
                             </li>
-    
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -60,7 +56,6 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="france" className="flag france"></label>
                             </li>
-
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -72,7 +67,6 @@ const Home = (props) => {
                                 />
                                 <label htmlFor="spain" className="flag spain"></label>
                             </li>
-
                             <li className="radio">
                                 <input
                                     type="radio"
@@ -87,7 +81,6 @@ const Home = (props) => {
                             
                         </ul>
                     </div>
-
                     <div className="userInput">
                         <label htmlFor="userInput">Search for your favourite artist, music track or genre and discover new music.</label>
                         <div className="searchBar">
@@ -100,13 +93,11 @@ const Home = (props) => {
                                 placeholder="Search for Artist, Song, or Genre"
                                 autoComplete="off"
                             />
-                        
                             <input className="submitButton" type="submit" value="Search"/>
                         </div>
                     </div>
                 </form>
             </div>
-
             <div className="search" id="search">
                 <div className="wrapper">
                     {props.resultsIsShowing && <SearchResult music={props.music} />}
@@ -114,7 +105,6 @@ const Home = (props) => {
                     {props.isLoading ? <p>Loaindg...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
                 </div>
             </div>
-            
         </Fragment>
     )
 }

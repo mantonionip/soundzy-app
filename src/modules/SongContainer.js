@@ -29,7 +29,6 @@ class SongContainer extends Component {
                             <h3 className="trackName">{trackName}</h3>
                             <h4 className="artist"><a href={artistViewUrl}>{artistName}</a></h4>
                             <audio id={mapIndex} src={previewUrl} type="audio/m4a">Your browser does not support the <code>audio</code> element.</audio>
-                            <button key={mapIndex} onClick={ () => { this.props.addSong(mapIndex) }}><FontAwesomeIcon icon="plus-circle" />add to playlist</button>
                         </div>
                     )
                 })}
