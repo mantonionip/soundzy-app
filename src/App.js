@@ -236,7 +236,6 @@ class App extends Component {
               handleSubmit={this.handleSubmit}
               addSong={this.addSong}
               audioPlay={this.audioPlay}
-              // click={this.validate}
             />
           {(!this.state.isHidden) ? <button type="reset" onClick={this.resetForm} className="sectionResetButton">Search Again</button> : null}
           {this.state.isHidden ? null : <Footer />}

@@ -5,12 +5,6 @@ import Header from './Header';
 
     const Home = (props) => {
 
-        // keypress = (event) => {
-        //     if ((event.key === ' ' || event.key === 'Enter')) {
-        //         this.props.click(event);
-        //     }
-        // }
-
         return(
             <Fragment>
                 <div className="searchPage">
@@ -124,7 +118,7 @@ import Header from './Header';
                     <div className="wrapper">
                         {props.resultsIsShowing && <SearchResult music={props.music} />}
     
-                        {props.isLoading ? <p>Loaindg...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
+                        {props.isLoading ? <p>Loading...</p> : <SongContainer music={props.music} addSong={props.addSong} audioPlay={props.audioPlay} audioPlaying={props.audioPlaying} />}
                     </div>
                 </div>
             </Fragment>
