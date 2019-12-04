@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mehdi-pilehvarian-project-five/static/css/main.9b191971.chunk.css",
-    "main.js": "/mehdi-pilehvarian-project-five/static/js/main.625ef3ce.chunk.js",
-    "main.js.map": "/mehdi-pilehvarian-project-five/static/js/main.625ef3ce.chunk.js.map",
+    "main.js": "/mehdi-pilehvarian-project-five/static/js/main.d402c2e4.chunk.js",
+    "main.js.map": "/mehdi-pilehvarian-project-five/static/js/main.d402c2e4.chunk.js.map",
     "runtime-main.js": "/mehdi-pilehvarian-project-five/static/js/runtime-main.e7fdbe7d.js",
     "runtime-main.js.map": "/mehdi-pilehvarian-project-five/static/js/runtime-main.e7fdbe7d.js.map",
     "static/js/2.26e4cd3e.chunk.js": "/mehdi-pilehvarian-project-five/static/js/2.26e4cd3e.chunk.js",
     "static/js/2.26e4cd3e.chunk.js.map": "/mehdi-pilehvarian-project-five/static/js/2.26e4cd3e.chunk.js.map",
     "index.html": "/mehdi-pilehvarian-project-five/index.html",
-    "precache-manifest.705a33f8c598755cc294e353ed090659.js": "/mehdi-pilehvarian-project-five/precache-manifest.705a33f8c598755cc294e353ed090659.js",
+    "precache-manifest.f8863628ea0de4ddd5e28e8cb5af1654.js": "/mehdi-pilehvarian-project-five/precache-manifest.f8863628ea0de4ddd5e28e8cb5af1654.js",
     "service-worker.js": "/mehdi-pilehvarian-project-five/service-worker.js",
     "static/css/main.9b191971.chunk.css.map": "/mehdi-pilehvarian-project-five/static/css/main.9b191971.chunk.css.map",
     "static/media/App.css": "/mehdi-pilehvarian-project-five/static/media/heroImage.910b9e5c.jpg",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.e7fdbe7d.js",
     "static/js/2.26e4cd3e.chunk.js",
     "static/css/main.9b191971.chunk.css",
-    "static/js/main.625ef3ce.chunk.js"
+    "static/js/main.d402c2e4.chunk.js"
   ]
 }
