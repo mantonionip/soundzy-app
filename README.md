@@ -4,3 +4,5 @@
 
 ### Live on GitHub pages:
 https://mantonionip.github.io/mehdi-pilehvarian-project-five/
+
+#### JavaScript | React | Firebase | API
