@@ -1,4 +1,4 @@
-# SOUNDZY | A SEARCH-FOR-MUSIC APPLICATION
+# SOUNDZY | A SEARCH-FOR-MUSIC APP
 
 ## Juno College BootCamp - Project Five
 
