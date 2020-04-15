@@ -1,6 +1,6 @@
 # SOUNDZY | A SEARCH-FOR-MUSIC APP
 
-## Juno College BootCamp - Project Five
+## Juno College BootCamp | Project Five | Solo Programming
 
 [Live Demo](https://mantonionip.github.io/mehdi-pilehvarian-project-five/)
 
