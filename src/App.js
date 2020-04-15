@@ -10,30 +10,26 @@ import jump from 'jump.js';
 
 
 class App extends Component {
-  constructor() {
-    super();
-    // To Store the data
-    this.state = {
-      isLoading: false,
-      resultsIsShowing: false,
-      userInput: '',
-      userCountry: '',
-      music: [],
-      songTitle: [],
-      songArtist: [],
-      songImage: [],
-      songAudioLink: [],
-      playlist: [],
-      selectedSong: '',
-      selectedArtist: '',
-      selectedImage: '',
-      selectedAudioLink: '',
-      audioPlaying: [],
-      songList: [],
-      isHidden: true, 
-      isReset: true,
-    }
-  }
+  state = {
+    isLoading: false,
+    resultsIsShowing: false,
+    userInput: '',
+    userCountry: '',
+    music: [],
+    songTitle: [],
+    songArtist: [],
+    songImage: [],
+    songAudioLink: [],
+    playlist: [],
+    selectedSong: '',
+    selectedArtist: '',
+    selectedImage: '',
+    selectedAudioLink: '',
+    audioPlaying: [],
+    songList: [],
+    isHidden: true, 
+    isReset: true,
+  };
 
   // Binding the input, and setting new values in state
   handleChange = (event) => {
