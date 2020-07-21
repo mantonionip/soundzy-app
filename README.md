@@ -2,7 +2,7 @@
 
 ## Juno College BootCamp | Project Five | Solo Programming
 
-[Live Demo](https://mantonionip.github.io/mehdi-pilehvarian-project-five/)
+[Live Demo](https://soundzy.netlify.app/)
 
 ![](src/assets/screenShot.png)
 
@@ -20,4 +20,4 @@ A search-for-music app using iTunes REST API allowing users to search for their 
 * VSCode
 
 ## Code & Design by:
-[Mehdi Pilehvarian](https://mehdipilehvarian.dev/)
+[Sam Pilehvarian](https://samdev.codes/)
